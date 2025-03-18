@@ -1,0 +1,23 @@
+[project]
+name = "candidate_advisor"
+version = "0.1.0"
+description = "candidate-advisor using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "crewai[tools]>=0.102.0,<1.0.0"
+]
+
+[project.scripts]
+candidate_advisor = "candidate_advisor.main:run"
+run_crew = "candidate_advisor.main:run"
+train = "candidate_advisor.main:train"
+replay = "candidate_advisor.main:replay"
+test = "candidate_advisor.main:test"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
