@@ -19,8 +19,6 @@ def run():
     """
     inputs = {
         "job_description": "job_offer.md"
-        # 'topic': 'AI LLMs',
-        # 'current_year': str(datetime.now().year)
     }
     
     try:

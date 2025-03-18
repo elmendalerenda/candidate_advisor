@@ -1,11 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import BraveSearchTool, ScrapeWebsiteTool, FileReadTool
-from crewai_tools import SeleniumScrapingTool
-from crewai_tools import FileReadTool
-
-
-
 
 # If you want to run a snippet of code before or after the crew starts, 
 # you can use the @before_kickoff and @after_kickoff decorators
@@ -21,24 +16,6 @@ class CandidateAdvisor():
 	agents_config = 'config/agents.yaml'
 	tasks_config = 'config/tasks.yaml'
 
-
-	# If you would like to add tools to your agents, you can learn more about it here:
-	# https://docs.crewai.com/concepts/agents#agent-tools
-	#@agent
-	#def researcher(self) -> Agent:
-	#	return Agent(
-	#		config=self.agents_config['researcher'],
-	#		verbose=True,
-	#		tools=[BraveSearchTool()]
-	#	)
-
-	#@agent
-	#def reporting_analyst(self) -> Agent:
-	#	return Agent(
-	#		config=self.agents_config['reporting_analyst'],
-	#		verbose=True
-	#	)
-	
 	@agent
 	def job_researcher(self) -> Agent:
 		return Agent(
@@ -81,22 +58,6 @@ class CandidateAdvisor():
 			verbose=True
 		)
 
-	# To learn more about structured task outputs, 
-	# task dependencies, and task callbacks, check out the documentation:
-	# https://docs.crewai.com/concepts/tasks#overview-of-a-task
-	#@task
-	#def research_task(self) -> Task:
-	#	return Task(
-	#		config=self.tasks_config['research_task'],
-	#	)
-
-	#@task
-	#def reporting_task(self) -> Task:
-	#	return Task(
-	#		config=self.tasks_config['reporting_task'],
-	#		output_file='report.md'
-	#	)
-	
 	@task
 	def job_research_task(self) -> Task:
 		return Task(
@@ -110,7 +71,7 @@ class CandidateAdvisor():
 		return Task(
 	 		config=self.tasks_config['candidate_task'],
 			output_file='candidate.md',
-	 		tools=[BraveSearchTool(), ScrapeWebsiteTool(), FileReadTool(file_path='resume.md'), FileReadTool(file_path='profile.txt')]
+	 		tools=[BraveSearchTool(), ScrapeWebsiteTool(), FileReadTool(file_path='resume.md'), FileReadTool(file_path='profile.md')]
 	 	)
 	
 	@task
